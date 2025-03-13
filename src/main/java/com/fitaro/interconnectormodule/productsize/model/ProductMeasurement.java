@@ -1,4 +1,4 @@
-package com.fitaro.interconnectormodule.product.model;
+package com.fitaro.interconnectormodule.productsize.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
