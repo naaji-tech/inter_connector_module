@@ -7,6 +7,7 @@ import com.fitaro.interconnectormodule.util.ResHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,9 @@ public class ProductServiceImpl implements ProductService {
 
             return ResHandler.success("Get product details success",product , HttpStatus.OK);
 
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println(e.getMessage());
+            return ResHandler.error(Error.PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResHandler.error(Error.DATABASE_EXCEPTION, HttpStatus.INTERNAL_SERVER_ERROR);

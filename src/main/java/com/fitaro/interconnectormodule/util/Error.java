@@ -21,7 +21,8 @@ public enum Error {
     // product module related errors
     ADD_PRODUCT_FAILED(-504, "Product adding failed"),
     PRODUCT_UPDATE_FAILED(-505, "Product update failed"),
-    PRODUCT_DELETE_FAILED(-506, "Product delete failed");
+    PRODUCT_DELETE_FAILED(-506, "Product delete failed"),
+    PRODUCT_NOT_FOUND(-418, "Product not found" );
 
     private final int value;
     private final String reasonPhrase;
