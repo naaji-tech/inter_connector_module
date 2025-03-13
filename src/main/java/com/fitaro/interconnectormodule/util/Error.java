@@ -9,14 +9,19 @@ public enum Error {
     USER_NOT_FOUND(-404, "User details not found"),
     USERNAME_NOT_FOUND(-410, "User not found"),
     WRONG_PASSWORD(-411, "Wrong password"),
-    USERNAME_UPDATE_FAILED(-412, "Update username failed"),
-    PASSWORD_UPDATE_FAILED(-413, "Update password failed"),
+    USERNAME_UPDATE_FAILED(-502, "Update username failed"),
+    PASSWORD_UPDATE_FAILED(-503, "Update password failed"),
 
     // user measurement related errors
     USER_MEASUREMENT_NOT_FOUND(-414, "User measurement not found"),
     USER_IMAGE_MISSING(-415, "User image is empty"),
     UM_CLIENT_CONNECTION_FAILED(-416, "User measurements client connection failed"),
-    ADD_NEW_USER_MEASUREMENT_FAILED(-417, "User measurements adding failed");
+    ADD_NEW_USER_MEASUREMENT_FAILED(-417, "User measurements adding failed"),
+
+    // product module related errors
+    ADD_PRODUCT_FAILED(-504, "Product adding failed"),
+    PRODUCT_UPDATE_FAILED(-505, "Product update failed"),
+    PRODUCT_DELETE_FAILED(-506, "Product delete failed");
 
     private final int value;
     private final String reasonPhrase;

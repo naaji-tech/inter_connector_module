@@ -1,7 +1,6 @@
 package com.fitaro.interconnectormodule.user.repository;
 
 import com.fitaro.interconnectormodule.user.model.User;
-import org.springframework.dao.DuplicateKeyException;
 
 public interface UserRepository {
     int createUser(User user) throws Exception;
