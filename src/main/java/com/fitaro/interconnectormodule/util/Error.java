@@ -3,7 +3,7 @@ package com.fitaro.interconnectormodule.util;
 public enum Error {
     // common database errors
     DATABASE_EXCEPTION(-501, "Internal server error"),
-    DUPLICATE_KEY_EXCEPTION(-510, "Username already exist"),
+    DUPLICATE_KEY_EXCEPTION(-510, "Already existing"),
 
     // user module related errors
     USER_NOT_FOUND(-404, "User details not found"),
@@ -22,7 +22,14 @@ public enum Error {
     ADD_PRODUCT_FAILED(-504, "Product adding failed"),
     PRODUCT_UPDATE_FAILED(-505, "Product update failed"),
     PRODUCT_DELETE_FAILED(-506, "Product delete failed"),
-    PRODUCT_NOT_FOUND(-418, "Product not found" );
+    PRODUCT_NOT_FOUND(-418, "Product not found" ),
+
+    // product measurement module related errors
+    ADD_PRODUCT_MEASUREMENT_MANUAL_FAILED(-507, "Add product measurement manually failed"),
+    PRODUCT_MEASUREMENTS_NOT_FOUND(-419, "Product measurements not found"),
+    PRODUCT_MEASUREMENTS_UPDATE_FAILED(-508, "Product measurement update failed" ),
+    PRODUCT_MEASUREMENTS_DELETE_FAILED(-509, "Product measurements delete failed" ),
+    PRODUCT_IMAGE_IS_EMPTY(-420, "at least one image needed"),;
 
     private final int value;
     private final String reasonPhrase;

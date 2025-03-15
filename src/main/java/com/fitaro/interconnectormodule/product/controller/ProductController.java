@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("productServices/v1/")
+@RequestMapping("/productServices/v1")
 public class ProductController {
     ProductService productService;
 
@@ -16,27 +16,27 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping("products")
+    @PostMapping("/products")
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
 
-    @GetMapping("products")
+    @GetMapping("/products")
     public ResponseEntity<Object> getProducts() {
         return productService.getProducts();
     }
 
-    @GetMapping("products/{productId}")
+    @GetMapping("/products/{productId}")
     public ResponseEntity<Object> getProductById(@PathVariable String productId) {
         return productService.getProductDetails(productId);
     }
 
-    @PutMapping("products")
+    @PutMapping("/products")
     public ResponseEntity<Object> updateProduct(@RequestBody Product product) {
         return productService.updateProduct(product);
     }
 
-    @DeleteMapping("products/{productId}")
+    @DeleteMapping("/products/{productId}")
     public ResponseEntity<Object> deleteProduct(@PathVariable String productId) {
         return productService.deleteProduct(productId);
     }

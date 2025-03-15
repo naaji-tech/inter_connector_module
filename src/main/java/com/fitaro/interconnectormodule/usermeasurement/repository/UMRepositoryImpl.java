@@ -7,11 +7,11 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 @Repository(value = "umPostgresql")
-public class UserMeasurementRepositoryImpl implements UserMeasurementRepository {
+public class UMRepositoryImpl implements UMRepository {
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserMeasurementRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public UMRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

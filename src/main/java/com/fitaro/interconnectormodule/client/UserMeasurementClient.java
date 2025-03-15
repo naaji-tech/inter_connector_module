@@ -16,6 +16,9 @@ public class UserMeasurementClient {
     private HttpHeaders headers;
     private MultiValueMap<String, Object> body;
 
+    @Value("${user.body.measure.server.url}")
+    private String targetServerUrl;
+
     @Autowired
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -30,9 +33,6 @@ public class UserMeasurementClient {
     public void setBody(MultiValueMap<String, Object> body) {
         this.body = body;
     }
-
-    @Value("${user.measurements.server.url}")
-    String targetServerUrl;
 
     public UserMeasurement getUserMeasurement(MultipartFile image, float height) throws Exception{
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);

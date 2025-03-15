@@ -1,8 +1,9 @@
-package com.fitaro.interconnectormodule.productsize.model;
+package com.fitaro.interconnectormodule.productmeasurement.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductMeasurement {
+    private String productSize;
     private float sleeveLength;
     private float shoulderWidth;
     private float chest;
@@ -11,7 +12,12 @@ public class ProductMeasurement {
     private float frontLength;
     private float sleeve;
 
+    public ProductMeasurement() {
+        super();
+    }
+
     public ProductMeasurement(
+            @JsonProperty(value = "productSize") String productSize,
             @JsonProperty(value = "sleeveLength") float sleeveLength,
             @JsonProperty(value = "shoulderWidth") float shoulderWidth,
             @JsonProperty(value = "chest") float chest,
@@ -20,6 +26,7 @@ public class ProductMeasurement {
             @JsonProperty(value = "frontLength") float frontLength,
             @JsonProperty(value = "sleeve") float sleeve
     ) {
+        this.productSize = productSize;
         this.sleeveLength = sleeveLength;
         this.shoulderWidth = shoulderWidth;
         this.chest = chest;
@@ -27,6 +34,14 @@ public class ProductMeasurement {
         this.bottomCircumference = bottomCircumference;
         this.frontLength = frontLength;
         this.sleeve = sleeve;
+    }
+
+    public String getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
     }
 
     public float getSleeveLength() {
@@ -88,7 +103,8 @@ public class ProductMeasurement {
     @Override
     public String toString() {
         return "ProductMeasurement{" +
-                "sleeveLength=" + sleeveLength +
+                "productSize='" + productSize + '\'' +
+                ", sleeveLength=" + sleeveLength +
                 ", shoulderWidth=" + shoulderWidth +
                 ", chest=" + chest +
                 ", waist=" + waist +

@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
     private String userId;
-    private String userName;
+    private String username;
     private String password;
     private String userType;
 
     public User(
             @JsonProperty(value = "userId") String userId,
-            @JsonProperty(value = "userName") String userName,
+            @JsonProperty(value = "username") String username,
             @JsonProperty(value = "password") String password,
             @JsonProperty(value = "userType") String userType
     ) {
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.userType = userType;
     }
@@ -28,12 +28,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -56,7 +56,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userType='" + userType + '\'' +
                 '}';

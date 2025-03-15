@@ -3,7 +3,7 @@ package com.fitaro.interconnectormodule.usermeasurement.service;
 import com.fitaro.interconnectormodule.client.UserMeasurementClient;
 import com.fitaro.interconnectormodule.user.repository.UserRepository;
 import com.fitaro.interconnectormodule.usermeasurement.model.UserMeasurement;
-import com.fitaro.interconnectormodule.usermeasurement.repository.UserMeasurementRepository;
+import com.fitaro.interconnectormodule.usermeasurement.repository.UMRepository;
 import com.fitaro.interconnectormodule.util.Error;
 import com.fitaro.interconnectormodule.util.ResHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Service
-public class UserMeasurementServiceImpl implements UserMeasurementService {
-    UserMeasurementRepository umRepository;
+public class UMServiceImpl implements UMService {
+    UMRepository umRepository;
     UserRepository userRepository;
     UserMeasurementClient umClient;
 
     @Autowired
-    public UserMeasurementServiceImpl(
-            @Qualifier("umPostgresql") UserMeasurementRepository umRepository,
+    public UMServiceImpl(
+            @Qualifier("umPostgresql") UMRepository umRepository,
             @Qualifier("uPostgresql") UserRepository userRepository,
             UserMeasurementClient umClient
     ) {
