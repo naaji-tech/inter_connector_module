@@ -1,7 +1,6 @@
 package com.fitaro.interconnectormodule.client;
 
 import com.fitaro.interconnectormodule.productmeasurement.model.ProductMeasurement;
-import com.fitaro.interconnectormodule.usermeasurement.model.UserMeasurement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;

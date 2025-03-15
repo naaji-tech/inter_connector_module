@@ -3,7 +3,6 @@ package com.fitaro.interconnectormodule.productmeasurement.repository;
 import com.fitaro.interconnectormodule.productmeasurement.model.ProductMeasurement;
 
 import java.util.List;
-import java.util.Map;
 
 public interface PMRepository {
     int[] addProductMeasurementManual(List<ProductMeasurement> productMeasurements, String productId) throws Exception;
