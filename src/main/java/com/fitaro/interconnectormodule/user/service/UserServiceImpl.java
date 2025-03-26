@@ -53,7 +53,12 @@ public class UserServiceImpl implements UserService {
             if (dbRes == Error.WRONG_PASSWORD.getValue())
                 return ResHandler.error(Error.WRONG_PASSWORD, HttpStatus.NOT_FOUND);
 
-            return ResHandler.success("User login success", HttpStatus.ACCEPTED);
+            User user = userRepository.getUserDetails(username);
+
+            if (user == null)
+                return ResHandler.error(Error.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
+
+            return ResHandler.success("User login success", user, HttpStatus.ACCEPTED);
 
         } catch (Exception e) {
             System.out.println("exception : " + e.getMessage());

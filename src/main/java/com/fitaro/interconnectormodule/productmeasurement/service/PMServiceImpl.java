@@ -53,6 +53,10 @@ public class PMServiceImpl implements PMService {
             if (imageXS.isEmpty() && imageS.isEmpty() && imageM.isEmpty() && imageL.isEmpty() && imageXL.isEmpty())
                 return ResHandler.error(Error.PRODUCT_IMAGE_IS_EMPTY, HttpStatus.BAD_REQUEST);
 
+            List<ProductMeasurement> pm = pmRepository.getProductMeasurements(productId);
+            if (!pm.isEmpty())
+                return ResHandler.error(Error.PRODUCT_MEASUREMENTS_ALREADY_EXIST, HttpStatus.BAD_REQUEST);
+
             List<MultipartFile> images = Arrays.asList(imageXS, imageS, imageM, imageL, imageXL);
             List<ProductMeasurement> productMeasurements = pmClient.getProductMeasurements(images);
 

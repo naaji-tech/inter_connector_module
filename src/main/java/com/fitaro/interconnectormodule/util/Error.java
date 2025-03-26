@@ -30,6 +30,7 @@ public enum Error {
     PRODUCT_MEASUREMENTS_UPDATE_FAILED(-508, "Product measurement update failed" ),
     PRODUCT_MEASUREMENTS_DELETE_FAILED(-509, "Product measurements delete failed" ),
     PRODUCT_IMAGE_IS_EMPTY(-420, "at least one image needed"),
+    PRODUCT_MEASUREMENTS_ALREADY_EXIST(-422, "Product measurements already exist"),
 
     // size recommendation module related errors
     MEASUREMENT_WEIGHT_NOT_FOUND(-421, "Measurement weight not found");
