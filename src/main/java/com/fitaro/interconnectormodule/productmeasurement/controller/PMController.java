@@ -33,7 +33,9 @@ public class PMController {
         @RequestParam MultipartFile imageL,
         @RequestParam MultipartFile imageXL
     ) {
-        return pmService.addProductMeasurementByScan(productId, imageXS, imageS, imageM, imageL, imageXL);
+        ResponseEntity<Object> response = pmService.addProductMeasurementByScan(productId, imageXS, imageS, imageM, imageL, imageXL);
+        System.out.println(response);
+        return response;
     }
 
     @GetMapping("/measurements/{productId}")

@@ -54,8 +54,10 @@ public class PMServiceImpl implements PMService {
                 return ResHandler.error(Error.PRODUCT_IMAGE_IS_EMPTY, HttpStatus.BAD_REQUEST);
 
             List<ProductMeasurement> pm = pmRepository.getProductMeasurements(productId);
-            if (!pm.isEmpty())
+            if (!pm.isEmpty()) {
+                pm.clear();
                 return ResHandler.error(Error.PRODUCT_MEASUREMENTS_ALREADY_EXIST, HttpStatus.BAD_REQUEST);
+            }
 
             List<MultipartFile> images = Arrays.asList(imageXS, imageS, imageM, imageL, imageXL);
             List<ProductMeasurement> productMeasurements = pmClient.getProductMeasurements(images);
@@ -63,6 +65,7 @@ public class PMServiceImpl implements PMService {
             System.out.println("product measurements size: " + productMeasurements.toString());
 
             int[] res = pmRepository.addProductMeasurementManual(productMeasurements, productId);
+            productMeasurements.clear();
             if (res.length < 1)
                 return ResHandler.error(Error.ADD_PRODUCT_MEASUREMENT_MANUAL_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -72,6 +75,7 @@ public class PMServiceImpl implements PMService {
             System.out.println("duplicate key exception : " + e.getMessage());
             return ResHandler.error(Error.DUPLICATE_KEY_EXCEPTION, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("exception : " + e.getMessage());
             return ResHandler.error(Error.DATABASE_EXCEPTION, HttpStatus.INTERNAL_SERVER_ERROR);
         }
