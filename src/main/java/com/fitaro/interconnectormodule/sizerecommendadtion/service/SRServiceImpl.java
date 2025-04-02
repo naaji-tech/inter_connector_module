@@ -30,10 +30,8 @@ public class SRServiceImpl implements SRService{
     private final UserRepository userRepository;
     private final PMRepository pmRepository;
     private final UserMeasurementClient umClient;
-    private final SizeRecommendation srRequestBody;
     private final SizeRecommendationClient srClient;
     private final UMRepository umRepository;
-    private final ProductSize productSize;
 
     @Autowired
     public SRServiceImpl(
@@ -41,19 +39,15 @@ public class SRServiceImpl implements SRService{
             UserRepository userRepository,
             @Qualifier(value = "pmPostgresql") PMRepository pmRepository,
             UserMeasurementClient umClient,
-            SizeRecommendation srRequestBody,
             SizeRecommendationClient srClient,
-            @Qualifier(value = "umPostgresql") UMRepository umRepository,
-            ProductSize productSize
+            @Qualifier(value = "umPostgresql") UMRepository umRepository
     ) {
         this.srRepository = srRepository;
         this.userRepository = userRepository;
         this.pmRepository = pmRepository;
         this.umClient = umClient;
-        this.srRequestBody = srRequestBody;
         this.srClient = srClient;
         this.umRepository = umRepository;
-        this.productSize = productSize;
     }
 
     @Override
@@ -82,6 +76,34 @@ public class SRServiceImpl implements SRService{
                 return ResHandler.error(Error.ADD_NEW_USER_MEASUREMENT_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
 
             // mapping user measurements and product measurements for size recommendation module
+            SizeRecommendation srRequestBody = new SizeRecommendation();
+            ProductSize productSize = new ProductSize();
+            ProductMeasurement productMeasurement = new ProductMeasurement();
+
+            productMeasurement.setChest(0);
+            productMeasurement.setWaist(0);
+            productMeasurement.setShoulderWidth(0);
+            productMeasurement.setWaist(0);
+            productMeasurement.setSleeveLength(0);
+            productMeasurement.setBottomCircumference(0);
+            productMeasurement.setFrontLength(0);
+            productMeasurement.setSleeve(0);
+
+            productMeasurement.setProductSize("XS");
+            productSize.setXs(productMeasurement);
+
+            productMeasurement.setProductSize("S");
+            productSize.setS(productMeasurement);
+
+            productMeasurement.setProductSize("M");
+            productSize.setM(productMeasurement);
+
+            productMeasurement.setProductSize("L");
+            productSize.setL(productMeasurement);
+
+            productMeasurement.setProductSize("XL");
+            productSize.setXl(productMeasurement);
+
             srRequestBody.setUserMeasurement(userMeasures);
             for (ProductMeasurement pm : pmList) {
                 switch (pm.getProductSize()) {
@@ -108,6 +130,7 @@ public class SRServiceImpl implements SRService{
                 }
             }
             srRequestBody.setMeasurementsWeight(measurementsWeights);
+            System.out.println(srRequestBody);
 
             // calling size recommendation module
             RecommendSizeDTO responseFromSRClient = srClient.getSizeRecommendation(srRequestBody);
@@ -130,6 +153,8 @@ public class SRServiceImpl implements SRService{
             if (pmList.isEmpty())
                 return ResHandler.error(Error.PRODUCT_MEASUREMENTS_NOT_FOUND, HttpStatus.NOT_FOUND);
 
+            System.out.println("product list : " + pmList);
+
             MeasurementsWeight measurementsWeights = srRepository.getMeasurementWeights(productId);
             if (measurementsWeights == null)
                 return ResHandler.error(Error.MEASUREMENT_WEIGHT_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -141,6 +166,34 @@ public class SRServiceImpl implements SRService{
             UserMeasurement userMeasures = umRepository.getUserMeasurements(userId);
 
             // mapping user measurements and product measurements for size recommendation module
+            SizeRecommendation srRequestBody = new SizeRecommendation();
+            ProductSize productSize = new ProductSize();
+            ProductMeasurement productMeasurement = new ProductMeasurement();
+
+            productMeasurement.setChest(0);
+            productMeasurement.setWaist(0);
+            productMeasurement.setShoulderWidth(0);
+            productMeasurement.setWaist(0);
+            productMeasurement.setSleeveLength(0);
+            productMeasurement.setBottomCircumference(0);
+            productMeasurement.setFrontLength(0);
+            productMeasurement.setSleeve(0);
+
+            productMeasurement.setProductSize("XS");
+            productSize.setXs(productMeasurement);
+
+            productMeasurement.setProductSize("S");
+            productSize.setS(productMeasurement);
+
+            productMeasurement.setProductSize("M");
+            productSize.setM(productMeasurement);
+
+            productMeasurement.setProductSize("L");
+            productSize.setL(productMeasurement);
+
+            productMeasurement.setProductSize("XL");
+            productSize.setXl(productMeasurement);
+
             srRequestBody.setUserMeasurement(userMeasures);
             for (ProductMeasurement pm : pmList) {
                 switch (pm.getProductSize()) {
@@ -167,6 +220,7 @@ public class SRServiceImpl implements SRService{
                 }
             }
             srRequestBody.setMeasurementsWeight(measurementsWeights);
+            System.out.println("request body: " + srRequestBody);
 
             // calling size recommendation module
             RecommendSizeDTO responseFromSRClient = srClient.getSizeRecommendation(srRequestBody);

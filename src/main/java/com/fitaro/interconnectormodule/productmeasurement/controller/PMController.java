@@ -27,13 +27,10 @@ public class PMController {
     @PostMapping("/scanMeasurements/{productId}")
     public ResponseEntity<Object> addProductMeasurementByScan(
         @PathVariable String productId,
-        @RequestParam MultipartFile imageXS,
-        @RequestParam MultipartFile imageS,
-        @RequestParam MultipartFile imageM,
-        @RequestParam MultipartFile imageL,
-        @RequestParam MultipartFile imageXL
+        @RequestParam List<MultipartFile> images,
+        @RequestParam String sizes
     ) {
-        ResponseEntity<Object> response = pmService.addProductMeasurementByScan(productId, imageXS, imageS, imageM, imageL, imageXL);
+        ResponseEntity<Object> response = pmService.addProductMeasurementByScan(productId, images, sizes);
         System.out.println(response);
         return response;
     }

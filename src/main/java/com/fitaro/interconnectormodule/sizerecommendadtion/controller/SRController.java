@@ -18,11 +18,15 @@ public class SRController {
 
     @GetMapping("/scanMeasurements/{username}/{productId}")
     public ResponseEntity<Object> getSizeRecommendationByMeasureMe(@PathVariable String username, @PathVariable String productId, @RequestParam(value = "usrImage") MultipartFile usrImage, @RequestParam(value = "usrHeight") float usrHeight) {
-        return srService.getSizeRecommendationByMeasureMe(username, productId, usrImage, usrHeight);
+        ResponseEntity<Object> response = srService.getSizeRecommendationByMeasureMe(username, productId, usrImage, usrHeight);
+        System.out.println(response);
+        return response;
     }
 
     @GetMapping("/oldMeasurements/{username}/{productId}")
     public ResponseEntity<Object> getSizeRecommendationByOldMeasurements(@PathVariable String username, @PathVariable String productId) {
-        return srService.getSizeRecommendationByOldMeasurements(username, productId);
+        ResponseEntity<Object> response = srService.getSizeRecommendationByOldMeasurements(username, productId);
+        System.out.println(response);
+        return response;
     }
 }

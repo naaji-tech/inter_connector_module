@@ -45,10 +45,12 @@ public class ProductMeasurementClient {
         this.pmResult = pmResult;
     }
 
-    public List<ProductMeasurement> getProductMeasurements(List<MultipartFile> images) throws Exception {
+    public List<ProductMeasurement> getProductMeasurements(List<MultipartFile> images, String sizes) throws Exception {
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        String[] sizesArr = sizes.split(",");
 
-        for (MultipartFile image : images) {
+        for (int i = 0; i < images.size(); i++) {
+            MultipartFile image = images.get(i);
             if (image.isEmpty())
                 continue;
 
@@ -64,7 +66,7 @@ public class ProductMeasurementClient {
             HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
             ResponseEntity<ProductMeasurement> response = restTemplate.postForEntity(targetServerUrl, request, ProductMeasurement.class);
 
-            Objects.requireNonNull(response.getBody()).setProductSize(image.getName().split("image")[1]);
+            Objects.requireNonNull(response.getBody()).setProductSize(sizesArr[i]);
             pmResult.add(response.getBody());
             System.out.println("Image body response: " + response.getBody());
         }

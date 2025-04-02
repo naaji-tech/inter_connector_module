@@ -45,16 +45,6 @@ public class InterConnectorModuleApplication {
     }
 
     @Bean
-    public SizeRecommendation sizeRecommendation() {
-        return new SizeRecommendation();
-    }
-
-    @Bean
-    public ProductSize productSize() {
-        return new ProductSize();
-    }
-
-    @Bean
     public UserMeasurementClient userMeasurementClient() {
         return new UserMeasurementClient();
     }

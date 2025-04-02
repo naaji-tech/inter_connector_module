@@ -48,9 +48,9 @@ public class PMServiceImpl implements PMService {
     }
 
     @Override
-    public ResponseEntity<Object> addProductMeasurementByScan(String productId, MultipartFile imageXS, MultipartFile imageS, MultipartFile imageM, MultipartFile imageL, MultipartFile imageXL) {
+    public ResponseEntity<Object> addProductMeasurementByScan(String productId, List<MultipartFile> images, String sizes) {
         try {
-            if (imageXS.isEmpty() && imageS.isEmpty() && imageM.isEmpty() && imageL.isEmpty() && imageXL.isEmpty())
+            if (images.isEmpty())
                 return ResHandler.error(Error.PRODUCT_IMAGE_IS_EMPTY, HttpStatus.BAD_REQUEST);
 
             List<ProductMeasurement> pm = pmRepository.getProductMeasurements(productId);
@@ -59,8 +59,7 @@ public class PMServiceImpl implements PMService {
                 return ResHandler.error(Error.PRODUCT_MEASUREMENTS_ALREADY_EXIST, HttpStatus.BAD_REQUEST);
             }
 
-            List<MultipartFile> images = Arrays.asList(imageXS, imageS, imageM, imageL, imageXL);
-            List<ProductMeasurement> productMeasurements = pmClient.getProductMeasurements(images);
+            List<ProductMeasurement> productMeasurements = pmClient.getProductMeasurements(images, sizes);
 
             System.out.println("product measurements size: " + productMeasurements.toString());
 

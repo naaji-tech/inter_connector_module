@@ -9,7 +9,7 @@ import java.util.List;
 public interface PMService {
     ResponseEntity<Object> addProductMeasurementByManual(List<ProductMeasurement> productMeasurements, String productId);
 
-    ResponseEntity<Object> addProductMeasurementByScan(String productId, MultipartFile imageXS, MultipartFile imageS, MultipartFile imageM, MultipartFile imageL, MultipartFile imageXL);
+    ResponseEntity<Object> addProductMeasurementByScan(String productId, List<MultipartFile> images, String sizes);
 
     ResponseEntity<Object> getProductMeasurements(String productId);
 
