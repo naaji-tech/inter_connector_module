@@ -4,8 +4,6 @@ import com.fitaro.interconnectormodule.client.ProductMeasurementClient;
 import com.fitaro.interconnectormodule.client.SizeRecommendationClient;
 import com.fitaro.interconnectormodule.client.UserMeasurementClient;
 import com.fitaro.interconnectormodule.productmeasurement.model.ProductMeasurement;
-import com.fitaro.interconnectormodule.sizerecommendadtion.model.ProductSize;
-import com.fitaro.interconnectormodule.sizerecommendadtion.model.SizeRecommendation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
